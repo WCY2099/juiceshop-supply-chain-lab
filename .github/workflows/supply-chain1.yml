@@ -54,3 +54,19 @@ jobs:
         with:
           sarif_file: results.sarif
           category: "grype-sbom"
+
+      - name: Create HTML Report
+        run: |
+          cat > report.html <<EOF
+          <html>
+          <body>
+            <h1>Grype Vulnerability Report</h1>
+            <pre>$(jq . grype-report.json)</pre>
+          </body>
+          </html>
+
+          - name: Convert HTML to PDF
+            run: |
+              sudo apt-get update
+              sudo apt-get install -y wkhtmltopdf
+              wkhtmltopdf report.html grype-report.pdf
