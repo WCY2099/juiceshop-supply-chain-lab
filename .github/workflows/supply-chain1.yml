@@ -233,7 +233,7 @@ jobs:
           pip3 install guarddog
           sudo apt-get install -y jq
 
-     # Parse package.json and run GuardDog scan on each package name
+  # Parse package.json and run GuardDog scan on each package name
       - name: Run GuardDog Dependency Scan
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
